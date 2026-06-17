@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { modules, STATUS, STATUS_COLORS, AREA_COLORS, referenceCards } from './SistemistData'
+import ArchitectureDiagram from './ArchitectureDiagram'
 
 const STORAGE_KEY = 'sistemista-junior-progress'
 
@@ -196,7 +197,7 @@ export default function App() {
           </div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          {[['roadmap','🗺️ Roadmap'],['cards','📋 Reference Cards']].map(([v,l]) => (
+          {[['roadmap','🗺️ Roadmap'],['cards','📋 Reference Cards'],['arch','🏗️ Architettura']].map(([v,l]) => (
             <button key={v} onClick={() => setView(v)} style={{
               padding: '7px 14px', borderRadius: 8, border: 'none', cursor: 'pointer',
               fontWeight: 600, fontSize: 13,
@@ -261,7 +262,7 @@ export default function App() {
               </span>
             </div>
           </>
-        ) : (
+        ) : view === 'cards' ? (
           <>
             {/* Cards view */}
             <div style={{ display: 'flex', gap: 16 }}>
@@ -314,7 +315,9 @@ export default function App() {
               </div>
             </div>
           </>
-        )}
+        ) : view === 'arch' ? (
+          <ArchitectureDiagram />
+        ) : null}
       </div>
     </div>
   )
